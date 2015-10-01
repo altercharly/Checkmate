@@ -5,6 +5,7 @@ public abstract class Pieza {
 	char color;  // b para las blanca, n para las negras//
 	char posx;
 	int posy;
+	int estado; //1 si esta en el tablero o 0 si esta en el cementerio//
 	
 	public void setname(char name){
 		this.name = name;
@@ -29,6 +30,12 @@ public abstract class Pieza {
 	}
 	public int getposy(){
 		return posy;
+	}
+	public void setestado(int estado){
+		this.estado = estado;
+	}
+	public int getestado(){
+		return estado;
 	}
 
 }
