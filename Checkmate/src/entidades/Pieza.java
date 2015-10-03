@@ -2,7 +2,7 @@ package entidades;
 
 public abstract class Pieza {
 	char name;   // una sola letra para representar la pieza, P para peon, A par alfil,etc //
-	char color;  // b para las blanca, n para las negras//
+	char color;  // w para las blanca, b para las negras//
 	char posx;
 	int posy;
 	int estado; //1 si esta en el tablero o 0 si esta en el cementerio//
