@@ -1,6 +1,15 @@
 package entidades;
 
 public class Rey extends Pieza {
+	
+	public Rey(char nombre, char colorin, char posix, int posiy, int est){
+		name = nombre;
+		color = colorin;
+		posx = posix;
+		posy = posiy;
+		estado = est;
+	}
+	
 	public Boolean movPerm(int x, char y){
 		Boolean resultado;
 		resultado = false;

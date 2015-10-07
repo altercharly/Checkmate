@@ -5,6 +5,7 @@ public class Usuario {
 	String apellido;
 	int id;
 	int dni;
+	Pieza[] piezas;
 	
     public Usuario(){
 		
@@ -38,6 +39,12 @@ public class Usuario {
 	}
 	public int getId(){
 		return id;
+	}
+	public void setpiezas(Pieza[] piezas){
+		this.piezas = piezas;
+	}
+	public Pieza[] getpiezas(){
+		return this.piezas;
 	}
 
 }
