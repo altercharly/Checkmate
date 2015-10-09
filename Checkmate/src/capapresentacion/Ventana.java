@@ -17,8 +17,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JList;
 
-public class Ventana extends JFrame {
+import entidades.*;
+import capanegocio.*;
 
+public class Ventana extends JFrame {
+	
+	
+	
 	private JPanel contentPane;
 	private JTextField txtDni;
 	private JTextField txtNombre;

@@ -1,11 +1,13 @@
 package entidades;
 
+import java.util.ArrayList;
+
 public class Usuario {
 	String nombre;
 	String apellido;
 	int id;
 	int dni;
-	Pieza[] piezas;
+	ArrayList<Pieza> piezas;
 	
     public Usuario(){
 		
@@ -40,10 +42,10 @@ public class Usuario {
 	public int getId(){
 		return id;
 	}
-	public void setpiezas(Pieza[] piezas){
+	public void setpiezas(ArrayList<Pieza> piezas){
 		this.piezas = piezas;
 	}
-	public Pieza[] getpiezas(){
+	public ArrayList<Pieza> getpiezas(){
 		return this.piezas;
 	}
 

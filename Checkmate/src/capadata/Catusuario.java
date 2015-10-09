@@ -42,7 +42,7 @@ public class Catusuario {
 		}
 		return u;
 	}
-	public Usuario addUsuario(int dni,String nombre, String apellido, String email){
+	public Usuario addUsuario(int dni,String nombre, String apellido){
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		Usuario u= new Usuario(dni,nombre,apellido);
@@ -80,4 +80,34 @@ public class Catusuario {
 		}
 		return u;
 	}
+	public String deleteUsuario(int dni){
+		String message = "Persona no encontrada";
+		ResultSet rs=null;
+		PreparedStatement stmt=null;
+		Usuario u=null;
+		try {
+			stmt = 	FactoryConexion.getInstancia().getConn().prepareStatement(
+					"DELETE from personas where dni = ?"
+					);
+			stmt.setInt(1, dni);
+			stmt.execute();
+			message="Persona borrada con exito";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			try {
+				if(stmt!=null) stmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			FactoryConexion.getInstancia().releaseConn();
+		}
+	
+		return message;	
+	}
+	
 }
