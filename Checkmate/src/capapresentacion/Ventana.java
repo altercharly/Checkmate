@@ -111,6 +111,11 @@ public class Ventana extends JFrame {
 		contentPane.add(btnAgregar);
 		
 		JButton btnBorrar = new JButton("Borrar Usuario");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				borrarusuario((Integer.parseInt(txtDni.getText())));
+			}
+		});
 		btnBorrar.setBounds(351, 41, 144, 23);
 		contentPane.add(btnBorrar);
 		
@@ -136,8 +141,15 @@ public class Ventana extends JFrame {
 		return u;
 	}
 	public Usuario crearusuario(int dni, String nombre, String apellido){
+		u.setdni(dni);
+		u.setNombre(nombre);
+		u.setApellido(apellido);
 		message = cont.addUsuario(dni, nombre, apellido);
 		JOptionPane.showMessageDialog(null, message);
 		return u;
+	}
+	public void borrarusuario(int dni){
+		message = cont.deleteUsuario(dni);
+		JOptionPane.showMessageDialog(null, message);
 	}
 }

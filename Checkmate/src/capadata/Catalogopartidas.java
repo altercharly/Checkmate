@@ -59,9 +59,5 @@ public class Catalogopartidas {
 		return(oponentes);
 	}
 
-	public void guardarpiezas(ArrayList<Pieza> pieza1, ArrayList<Pieza> pieza2) {
-		// TODO Auto-generated method stub
 		
-	}
-
 }

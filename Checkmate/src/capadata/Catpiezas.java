@@ -57,11 +57,11 @@ public class Catpiezas {
 				e.printStackTrace();
 			}
 		for (int j = 0; i < 16; i++) {
-			nombre = pieza1.get(j).getname();
-			posx = pieza1.get(j).getposx();
-			posy = pieza1.get(j).getposy();
-			color = pieza1.get(j).getcolor();
-			estado = pieza1.get(j).getestado();
+			nombre = pieza2.get(j).getname();
+			posx = pieza2.get(j).getposx();
+			posy = pieza2.get(j).getposy();
+			color = pieza2.get(j).getcolor();
+			estado = pieza2.get(j).getestado();
 				
 												
 			sql = "UPDATE `ajedrez`.`piezas` SET `nombre` = ?, `posx` = ?, `posy` = ?, `color`= ?, `estado` = ? WHERE `id` = ? AND `idpartida` = ? ;";
