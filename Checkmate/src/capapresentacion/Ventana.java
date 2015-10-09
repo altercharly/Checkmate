@@ -9,10 +9,13 @@ import javax.swing.border.EmptyBorder;
 
 import capanegocio.*;
 import entidades.*;
+
 import java.awt.CardLayout;
+
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -20,9 +23,13 @@ import javax.swing.JList;
 import entidades.*;
 import capanegocio.*;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Ventana extends JFrame {
-	
-	
+	Usuario u = new Usuario();
+	Controlador cont = new Controlador();
+	String message; 
 	
 	private JPanel contentPane;
 	private JTextField txtDni;
@@ -84,10 +91,22 @@ public class Ventana extends JFrame {
 		txtApellido.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar Usuario");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				buscarusuario((Integer.parseInt(txtDni.getText())));
+				txtNombre.setText(u.getNombre());
+				txtApellido.setText(u.getApellido());
+			}
+		});
 		btnBuscar.setBounds(164, 11, 143, 23);
 		contentPane.add(btnBuscar);
 		
 		JButton btnAgregar = new JButton("Nuevo Usuario");
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				crearusuario((Integer.parseInt(txtDni.getText())),txtNombre.getText(),txtApellido.getText());
+			}
+		});
 		btnAgregar.setBounds(351, 11, 144, 23);
 		contentPane.add(btnAgregar);
 		
@@ -110,5 +129,15 @@ public class Ventana extends JFrame {
 		JButton btnsalir = new JButton("Salir");
 		btnsalir.setBounds(351, 316, 144, 23);
 		contentPane.add(btnsalir);
+	}
+	
+	public Usuario buscarusuario(int dni){
+		u = cont.buscarusuario(dni);
+		return u;
+	}
+	public Usuario crearusuario(int dni, String nombre, String apellido){
+		message = cont.addUsuario(dni, nombre, apellido);
+		JOptionPane.showMessageDialog(null, message);
+		return u;
 	}
 }

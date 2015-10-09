@@ -8,8 +8,8 @@ import entidades.*;
 
 public class Controlador {
 	Catusuario catu = new Catusuario();
-	Catalogopartidas cp = new Catalogopartidas();
-	
+	Catalogopartidas cpa = new Catalogopartidas();
+	Catpiezas cp = new Catpiezas();
 	
 	public Usuario buscarusuario(int dni){
 		return catu.buscarusuario(dni);
@@ -35,13 +35,13 @@ public class Controlador {
 	
 	public ArrayList<Integer> buscarOponentes(int dni)
 	{
-		ArrayList<Integer> listaOponentes = cp.buscarOponente(dni);
+		ArrayList<Integer> listaOponentes = cpa.buscarOponente(dni);
 		return(listaOponentes);
 	}
 	
 	
 	
-	public String movimientovalido(char pieza, char posix, int posiy,char nposix, int nposiy, Usuario jug1, Usuario jug2){
+	public String movimientovalido(char pieza, char posix, int posiy,char nposix, int nposiy, Usuario jug1, Usuario jug2,int idpart){
 		String message = "Movimiento invalido";
 		boolean puede;
 		char nombre;
@@ -49,11 +49,15 @@ public class Controlador {
 		char posx;
 		char color;
 		int estado;
+		int id1;
+		int id2;
 		
 		ArrayList<Pieza> pieza1 = new ArrayList<Pieza>();
 		ArrayList<Pieza> pieza2 = new ArrayList<Pieza>();
 		pieza1 = jug1.getpiezas();
 		pieza2 = jug2.getpiezas();
+		id1 = jug1.getId();
+		id2 = jug2.getId();
 		for (int i = 0; i < 16; i++) {
 			nombre = pieza1.get(i).getname();
 			posx = pieza1.get(i).getposx();
@@ -76,7 +80,7 @@ public class Controlador {
 									alf.setposx(nposix);
 									alf.setposy(nposiy);
 									pieza1.set(i,alf);
-									cp.guardarpiezas(pieza1,pieza2);
+									cp.guardarpieza(pieza1,pieza2, id1, id2,idpart);
 									message = "Movimiento exitoso";
 								}
 								return message ;
@@ -97,7 +101,7 @@ public class Controlador {
 									cab.setposx(nposix);
 									cab.setposy(nposiy);
 									pieza1.set(i,cab);
-									cp.guardarpiezas(pieza1,pieza2);
+									cp.guardarpieza(pieza1,pieza2,id1, id2,idpart);
 									message = "Movimiento exitoso";
 								}
 								return message ;
@@ -118,7 +122,7 @@ public class Controlador {
 									reina.setposx(nposix);
 									reina.setposy(nposiy);
 									pieza1.set(i,reina);
-									cp.guardarpiezas(pieza1,pieza2);
+									cp.guardarpieza(pieza1,pieza2,id1,id2,idpart);
 									message = "Movimiento exitoso";
 								}
 								return message ;
@@ -139,7 +143,7 @@ public class Controlador {
 									rey.setposx(nposix);
 									rey.setposy(nposiy);
 									pieza1.set(i,rey);
-									cp.guardarpiezas(pieza1,pieza2);
+									cp.guardarpieza(pieza1,pieza2,id1,id2,idpart);
 									message = "Movimiento exitoso";
 								}
 								return message ;
@@ -160,7 +164,7 @@ public class Controlador {
 									torr.setposx(nposix);
 									torr.setposy(nposiy);
 									pieza1.set(i,torr);
-									cp.guardarpiezas(pieza1,pieza2);
+									cp.guardarpieza(pieza1,pieza2,id1,id2,idpart);
 									message = "Movimiento exitoso";
 								}
 								return message ;
@@ -185,7 +189,7 @@ public class Controlador {
 									peon.setposx(nposix);
 									peon.setposy(nposiy);
 									pieza1.set(i,peon);
-									cp.guardarpiezas(pieza1,pieza2);
+									cp.guardarpieza(pieza1,pieza2,id1,id2,idpart);
 									message = "Movimiento exitoso";
 								}
 								return message ;
@@ -205,8 +209,8 @@ public class Controlador {
 	}
 	
 	
-	public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2 ){
+	public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2, int idpart ){
 		Partida partn = new Partida();
-		partn.cargarpartida(piezas1, jug1, piezas2, jug2);
+		partn.cargarpartida(piezas1, jug1, piezas2, jug2,idpart);
 	}
 }

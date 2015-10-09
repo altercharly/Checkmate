@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
+import java.util.ArrayList;
+
+import entidades.Pieza;
 import entidades.Usuario;
 
 
@@ -14,7 +17,7 @@ public class Catalogopartidas {
 	{
 		ArrayList<Integer> oponentes = new ArrayList<Integer>();
 		
-		String sql="select blanco, negro from partida where blanco = ? or negro = ?;";
+		String sql="select dni from usuario innerjoin partidas on partidas.dni = usuario.dni where `dni`= ? ;";
 		PreparedStatement sentencia=null;
 		ResultSet rs=null;
 		Connection con = Conexion.getInstancia().getConn();
@@ -22,16 +25,11 @@ public class Catalogopartidas {
 		{			
 			sentencia= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			sentencia.setInt(1, dni);
-			sentencia.setInt(2, dni);
-			rs= sentencia.executeQuery();
+			rs= sentencia.execute();
 			
 			while (rs.next())
 			{			
-				int blanco = rs.getInt("blanco"), negro = rs.getInt("negro");
-				if(blanco == dni)
-					oponentes.add(negro);
-				else
-					oponentes.add(blanco);
+				oponentes.add(rs.next());
 			}
 			
 		}
@@ -59,6 +57,11 @@ public class Catalogopartidas {
 			}
 		}	
 		return(oponentes);
+	}
+
+	public void guardarpiezas(ArrayList<Pieza> pieza1, ArrayList<Pieza> pieza2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
