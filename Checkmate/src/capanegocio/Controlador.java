@@ -10,9 +10,12 @@ public class Controlador {
 	Catusuario catu = new Catusuario();
 	Catalogopartidas cp = new Catalogopartidas();
 	
+	
 	public Usuario buscarusuario(int dni){
 		return catu.buscarusuario(dni);
 	}
+	
+	
 	public String addUsuario(int dni, String nombre, String apellido){
 		Usuario u = new Usuario();
 		String message = "ERROR";
@@ -24,15 +27,20 @@ public class Controlador {
 		}
 	
 	
-	public String deletePersona(int dni){
+	public String deleteUsuario(int dni){
 		return catu.deleteUsuario(dni);
 	}
+	
+	
 	
 	public ArrayList<Integer> buscarOponentes(int dni)
 	{
 		ArrayList<Integer> listaOponentes = cp.buscarOponente(dni);
 		return(listaOponentes);
 	}
+	
+	
+	
 	public String movimientovalido(char pieza, char posix, int posiy,char nposix, int nposiy, Usuario jug1, Usuario jug2){
 		String message = "Movimiento invalido";
 		boolean puede;
@@ -169,6 +177,10 @@ public class Controlador {
 										if(( nposix == pieza2.get(k).getposx())&&(nposiy == pieza2.get(k).getposy())&&(1 == pieza2.get(k).getestado())){
 											pieza2.get(k).setestado(0);
 										}
+										else if(nposix != posix){
+											message ="Movimiento invalido";
+											break;
+										}
 									}
 									peon.setposx(nposix);
 									peon.setposy(nposiy);
@@ -180,13 +192,20 @@ public class Controlador {
 							};
 							break;					
 						}
-				
-				puede = pieza1.get(i).movperm(nposix,nposiy);
+				}
 			}
-			
 		}
-		
 		return message;
 	}
 	
+	
+	public void nuevapartida(Usuario jug1,Usuario jug2){
+		Partida partn = new Partida();
+		partn.iniciarpartida(jug1, jug2);
+	}
+	
+	
+	public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2 ){
+		
+	}
 }
