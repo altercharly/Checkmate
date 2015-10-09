@@ -3,13 +3,15 @@ package entidades;
 import java.util.ArrayList;
 
 public class Partida {
+	int id;
 	Usuario jugador1;
 	Usuario jugador2;
-	public void cargarpartida(Pieza[] piezas1, Usuario jug1, Pieza[] piezas2, Usuario jug2 ){
+	public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2,int idpart ){
 	jugador1 = jug1;
 	jugador1.setpiezas(piezas1);
 	jugador2 = jug2;
 	jugador2.setpiezas(piezas2);
+	id = idpart;
 	}
 	public void iniciarpartida(Usuario jug1, Usuario jug2){
 		jugador1 = jug1;
@@ -109,5 +111,8 @@ public class Partida {
 			pieza2.add(peon);
 			posix ++;
 		}
+	}
+	public int getid(){
+		return this.id;
 	}
 }
