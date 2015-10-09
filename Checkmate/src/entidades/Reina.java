@@ -76,5 +76,5 @@ public class Reina extends Pieza {
 	}
 }
 
-// terminar de ajustar la validacion
+
 

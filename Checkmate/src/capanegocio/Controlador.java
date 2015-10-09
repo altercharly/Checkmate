@@ -15,7 +15,7 @@ public class Controlador {
 	}
 	public String addUsuario(int dni, String nombre, String apellido){
 		Usuario u = new Usuario();
-		String message = "ERROR Charly";
+		String message = "ERROR";
 		u = buscarusuario(dni);
 		if (u == null){
 			catu.addUsuario(dni, nombre, apellido);
@@ -35,9 +35,154 @@ public class Controlador {
 	}
 	public String movimientovalido(char pieza, char posix, int posiy,char nposix, int nposiy, Usuario jug1, Usuario jug2){
 		String message = "Movimiento invalido";
+		boolean puede;
+		char nombre;
+		int posy;
+		char posx;
+		char color;
+		int estado;
+		
 		ArrayList<Pieza> pieza1 = new ArrayList<Pieza>();
+		ArrayList<Pieza> pieza2 = new ArrayList<Pieza>();
 		pieza1 = jug1.getpiezas();
+		pieza2 = jug2.getpiezas();
 		for (int i = 0; i < 16; i++) {
+			nombre = pieza1.get(i).getname();
+			posx = pieza1.get(i).getposx();
+			posy = pieza1.get(i).getposy();
+			if((nombre == pieza)&&(posiy == posy)&&(posix==posx)){
+				for(int j=0; j < 6; i++){
+					switch(i){
+						case 0:
+							if ( 'a' == nombre){
+								color = pieza1.get(i).getcolor();
+								estado = pieza1.get(i).getestado();
+								Alfil alf = new Alfil(nombre, color, posix, posiy, estado);
+								puede = alf.movPerm(nposiy, nposix);
+								if (true == puede){
+									for (int k = 0; k < 16; k++) {
+										if(( nposix == pieza2.get(k).getposx())&&(nposiy == pieza2.get(k).getposy())&&(1 == pieza2.get(k).getestado())){
+											pieza2.get(k).setestado(0);
+										}
+									}
+									alf.setposx(nposix);
+									alf.setposy(nposiy);
+									pieza1.set(i,alf);
+									cp.guardarpiezas(pieza1,pieza2);
+									message = "Movimiento exitoso";
+								}
+								return message ;
+							}
+							break;
+						case 1:
+							if ( 'c' == nombre){
+								color = pieza1.get(i).getcolor();
+								estado = pieza1.get(i).getestado();
+								Caballo cab = new Caballo(nombre, color, posix, posiy, estado);
+								puede = cab.movPerm(nposiy, nposix);
+								if (true == puede){
+									for (int k = 0; k < 16; k++) {
+										if(( nposix == pieza2.get(k).getposx())&&(nposiy == pieza2.get(k).getposy())&&(1 == pieza2.get(k).getestado())){
+											pieza2.get(k).setestado(0);
+										}
+									}
+									cab.setposx(nposix);
+									cab.setposy(nposiy);
+									pieza1.set(i,cab);
+									cp.guardarpiezas(pieza1,pieza2);
+									message = "Movimiento exitoso";
+								}
+								return message ;
+							}
+							break;
+						case 2:
+							if ( 'd' == nombre){
+								color = pieza1.get(i).getcolor();
+								estado = pieza1.get(i).getestado();
+								Reina reina = new Reina(nombre, color, posix, posiy, estado);
+								puede = reina.movPerm(nposiy, nposix);
+								if (true == puede){
+									for (int k = 0; k < 16; k++) {
+										if(( nposix == pieza2.get(k).getposx())&&(nposiy == pieza2.get(k).getposy())&&(1 == pieza2.get(k).getestado())){
+											pieza2.get(k).setestado(0);
+										}
+									}
+									reina.setposx(nposix);
+									reina.setposy(nposiy);
+									pieza1.set(i,reina);
+									cp.guardarpiezas(pieza1,pieza2);
+									message = "Movimiento exitoso";
+								}
+								return message ;
+							};
+							break;
+						case 3:
+							if ( 'r' == nombre){
+								color = pieza1.get(i).getcolor();
+								estado = pieza1.get(i).getestado();
+								Rey rey = new Rey(nombre, color, posix, posiy, estado);
+								puede = rey.movPerm(nposiy, nposix);
+								if (true == puede){
+									for (int k = 0; k < 16; k++) {
+										if(( nposix == pieza2.get(k).getposx())&&(nposiy == pieza2.get(k).getposy())&&(1 == pieza2.get(k).getestado())){
+											pieza2.get(k).setestado(0);
+										}
+									}
+									rey.setposx(nposix);
+									rey.setposy(nposiy);
+									pieza1.set(i,rey);
+									cp.guardarpiezas(pieza1,pieza2);
+									message = "Movimiento exitoso";
+								}
+								return message ;
+							};
+							break;
+						case 4:
+							if ( 't' == nombre){
+								color = pieza1.get(i).getcolor();
+								estado = pieza1.get(i).getestado();
+								Torre torr = new Torre(nombre, color, posix, posiy, estado);
+								puede = torr.movPerm(nposiy, nposix);
+								if (true == puede){
+									for (int k = 0; k < 16; k++) {
+										if(( nposix == pieza2.get(k).getposx())&&(nposiy == pieza2.get(k).getposy())&&(1 == pieza2.get(k).getestado())){
+											pieza2.get(k).setestado(0);
+										}
+									}
+									torr.setposx(nposix);
+									torr.setposy(nposiy);
+									pieza1.set(i,torr);
+									cp.guardarpiezas(pieza1,pieza2);
+									message = "Movimiento exitoso";
+								}
+								return message ;
+							};
+							break;
+						case 5:
+							if ( 'p' == nombre){
+								color = pieza1.get(i).getcolor();
+								estado = pieza1.get(i).getestado();
+								Peon peon = new Peon(nombre, color, posix, posiy, estado);
+								puede = peon.movPerm(nposiy, nposix);
+								if (true == puede){
+									for (int k = 0; k < 16; k++) {
+										if(( nposix == pieza2.get(k).getposx())&&(nposiy == pieza2.get(k).getposy())&&(1 == pieza2.get(k).getestado())){
+											pieza2.get(k).setestado(0);
+										}
+									}
+									peon.setposx(nposix);
+									peon.setposy(nposiy);
+									pieza1.set(i,peon);
+									cp.guardarpiezas(pieza1,pieza2);
+									message = "Movimiento exitoso";
+								}
+								return message ;
+							};
+							break;					
+						}
+				
+				puede = pieza1.get(i).movperm(nposix,nposiy);
+			}
 			
 		}
 		
