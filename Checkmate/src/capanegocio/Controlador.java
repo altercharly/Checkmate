@@ -213,4 +213,9 @@ public class Controlador {
 		Partida partn = new Partida();
 		partn.cargarpartida(piezas1, jug1, piezas2, jug2,idpart);
 	}
+	public Partida buscarpartida(int dni1, int dni2){
+		Partida p = new Partida ();
+		p =	cpa.buscarpartida(dni1,dni2);
+		return p;
+	}
 }

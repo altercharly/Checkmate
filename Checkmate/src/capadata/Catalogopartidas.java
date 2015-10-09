@@ -1,6 +1,8 @@
 package capadata;
 
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 
 import entidades.Pieza;
 import entidades.Usuario;
+import entidades.Partida;
 
 
 public class Catalogopartidas {
@@ -17,10 +20,10 @@ public class Catalogopartidas {
 	{
 		ArrayList<Integer> oponentes = new ArrayList<Integer>();
 		
-		String sql="select dni from usuario innerjoin partidas on partidas.dni = usuario.dni where `dni`= ? ;";
+		String sql="select dni from usuario inner join partidas on partidas.dni = usuario.dni where `dni`= ? ;";
 		PreparedStatement sentencia=null;
 		ResultSet rs=null;
-		Connection con = Conexion.getInstancia().getConn();
+		Connection con = FactoryConexion.getInstancia().getConn();
 		try 
 		{			
 			sentencia= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -59,5 +62,46 @@ public class Catalogopartidas {
 		return(oponentes);
 	}
 
-		
+	public 	Partida buscarpartida(int dni1, int dni2){
+		Partida p = new Partida();
+		String sql="select * from partida  where `dnijug1`= ? and `dnijug2`= ?  ;";
+		PreparedStatement sentencia=null;
+		ResultSet rs=null;
+		Connection con = FactoryConexion.getInstancia().getConn();
+		try 
+		{			
+			sentencia= con.prepareStatement(sql);
+			sentencia.setInt(1, dni1);
+			sentencia.setInt(2, dni2);
+			rs= sentencia.executeQuery();
+			p.getid(rs.getInt(1));
+			
+			
+			
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if(rs!=null)
+				{
+					rs.close();
+				}
+				if(sentencia!=null && !sentencia.isClosed())
+				{
+					sentencia.close();
+				}
+				Conexion.getInstancia().CloseConn();
+			}
+			catch (SQLException sqle)
+			{
+				sqle.printStackTrace();
+			}
+		}
+		return p;
+	}
 }

@@ -1,11 +1,15 @@
 package capadata;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 
 import java.util.ArrayList;
+
+
 
 import entidades.Alfil;
 import entidades.Caballo;
@@ -31,7 +35,7 @@ public class Catpiezas {
 		String sql;
 		
 		PreparedStatement sentencia=null;
-		Connection con = Conexion.getInstancia().getConn();
+		Connection con = FactoryConexion.getInstancia().getConn();
 		
 		for (int i = 0; i < 16; i++) {
 			nombre = pieza1.get(i).getname();
@@ -66,7 +70,7 @@ public class Catpiezas {
 												
 			sql = "UPDATE `ajedrez`.`piezas` SET `nombre` = ?, `posx` = ?, `posy` = ?, `color`= ?, `estado` = ? WHERE `id` = ? AND `idpartida` = ? ;";
 			try {
-				sentencia = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				sentencia = (PreparedStatement) con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				sentencia.setInt(1,nombre);
 				sentencia.setInt(2, posx);
 				sentencia.setInt(3,posy);
@@ -86,3 +90,4 @@ public class Catpiezas {
 	
 	
 }
+

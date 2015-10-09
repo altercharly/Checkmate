@@ -124,6 +124,11 @@ public class Ventana extends JFrame {
 		contentPane.add(list);
 		
 		JButton btnbuscarpart = new JButton("Buscar Partida");
+		btnbuscarpart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				buscarpartida(dni1, dni2);
+			}
+		});
 		btnbuscarpart.setBounds(352, 111, 143, 23);
 		contentPane.add(btnbuscarpart);
 		
@@ -151,5 +156,8 @@ public class Ventana extends JFrame {
 	public void borrarusuario(int dni){
 		message = cont.deleteUsuario(dni);
 		JOptionPane.showMessageDialog(null, message);
+	}
+	public void buscarpartida(int dni1,int dni2){
+		cont.buscarpartida(dni1,dni2);
 	}
 }
