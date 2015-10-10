@@ -89,7 +89,7 @@ public class VentanaJugada extends JFrame {
 		btnRealizarMov = new JButton("Realizar Movimiento");
 		btnRealizarMov.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				realizarmovi();
+				realizarmov();
 			}
 		});
 		
