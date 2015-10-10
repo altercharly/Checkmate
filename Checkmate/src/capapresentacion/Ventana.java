@@ -35,6 +35,7 @@ public class Ventana extends JFrame {
 	private JTextField txtDni;
 	private JTextField txtNombre;
 	private JTextField txtApellido;
+	private JTextField txtDniCont;
 
 	/**
 	 * Launch the application.
@@ -56,6 +57,7 @@ public class Ventana extends JFrame {
 	 * Create the frame.
 	 */
 	public Ventana() {
+		setTitle("Menu Ajedrez");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 530, 400);
 		contentPane = new JPanel();
@@ -133,12 +135,39 @@ public class Ventana extends JFrame {
 		contentPane.add(btnbuscarpart);
 		
 		JButton btnnuevapart = new JButton("Nueva Partida");
+		btnnuevapart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				nuevapartida();
+			}
+		});
 		btnnuevapart.setBounds(351, 145, 144, 23);
 		contentPane.add(btnnuevapart);
 		
 		JButton btnsalir = new JButton("Salir");
 		btnsalir.setBounds(351, 316, 144, 23);
 		contentPane.add(btnsalir);
+		
+		JLabel lblDniCont = new JLabel("Dni:");
+		lblDniCont.setBounds(351, 206, 22, 14);
+		contentPane.add(lblDniCont);
+		
+		txtDniCont = new JTextField();
+		txtDniCont.setBounds(371, 203, 124, 20);
+		contentPane.add(txtDniCont);
+		txtDniCont.setColumns(10);
+		
+		JLabel lblContrincante = new JLabel("Contrincante");
+		lblContrincante.setBounds(371, 179, 82, 14);
+		contentPane.add(lblContrincante);
+		
+		JButton btnBuscarCont = new JButton("Buscar Contrincante");
+		btnBuscarCont.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		btnBuscarCont.setBounds(351, 232, 144, 23);
+		contentPane.add(btnBuscarCont);
 	}
 	
 	public Usuario buscarusuario(int dni){
@@ -160,4 +189,6 @@ public class Ventana extends JFrame {
 	public void buscarpartida(int dni1,int dni2){
 		cont.buscarpartida(dni1,dni2);
 	}
+
+	
 }
