@@ -170,10 +170,17 @@ public class Ventana extends JFrame {
 		contentPane.add(btnBuscarCont);
 	}
 	
+	
+	
+	
 	public Usuario buscarusuario(int dni){
 		u = cont.buscarusuario(dni);
 		return u;
 	}
+	
+	
+	
+	
 	public Usuario crearusuario(int dni, String nombre, String apellido){
 		u.setdni(dni);
 		u.setNombre(nombre);
@@ -182,6 +189,10 @@ public class Ventana extends JFrame {
 		JOptionPane.showMessageDialog(null, message);
 		return u;
 	}
+	
+	
+	
+	
 	public void borrarusuario(int dni){
 		message = cont.deleteUsuario(dni);
 		JOptionPane.showMessageDialog(null, message);

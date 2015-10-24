@@ -197,5 +197,6 @@ public class VentanaJugada extends JFrame {
 		cont.movimientovalido(pieza, posix, posiy, nposix, nposiy, jug1, jug2, idpart);
 		
 		// falta seguir pasando datos a las variables
+		
 	}
 }
