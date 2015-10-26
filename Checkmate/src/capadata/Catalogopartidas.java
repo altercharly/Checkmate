@@ -16,8 +16,10 @@ import entidades.Partida;
 
 
 public class Catalogopartidas {
-	public ArrayList<Integer> buscarOponente(int dni)
-	{
+	
+	
+	public ArrayList<Integer> buscarOponente(int dni){
+		
 		ArrayList<Integer> oponentes = new ArrayList<Integer>();
 		
 		String sql="select dni from usuario inner join partidas on partidas.dni = usuario.dni where `dni`= ? ;";
@@ -28,7 +30,7 @@ public class Catalogopartidas {
 		{			
 			sentencia= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			sentencia.setInt(1, dni);
-			rs= sentencia.execute();
+			rs= sentencia.executeQuery();
 			
 			while (rs.next())
 			{			
@@ -52,7 +54,7 @@ public class Catalogopartidas {
 				{
 					sentencia.close();
 				}
-				Conexion.getInstancia().CloseConn();
+				FactoryConexion.getInstancia().releaseConn();
 			}
 			catch (SQLException sqle)
 			{
@@ -74,7 +76,7 @@ public class Catalogopartidas {
 			sentencia.setInt(1, dni1);
 			sentencia.setInt(2, dni2);
 			rs= sentencia.executeQuery();
-			p.getid(rs.getInt(1));
+			p.setid(rs.getInt(1));
 			
 			
 			
@@ -95,7 +97,7 @@ public class Catalogopartidas {
 				{
 					sentencia.close();
 				}
-				Conexion.getInstancia().CloseConn();
+				FactoryConexion.getInstancia().releaseConn();
 			}
 			catch (SQLException sqle)
 			{

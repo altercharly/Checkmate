@@ -10,9 +10,13 @@ public class Peon extends Pieza {
 		estado = est;
 	}
 	
+	
+	
 	public Boolean movPerm(int x, char y){
+		
 		Boolean resultado;
 		resultado = false;
+		
 		if( 'w' == this.getcolor()){
 			if((y == this.getposy()+1) && (x == this.getposx() )){
 				resultado = true;
@@ -34,5 +38,7 @@ public class Peon extends Pieza {
 		return resultado;
 	}
 
+	
+	
 }
 

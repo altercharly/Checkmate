@@ -26,6 +26,8 @@ import capanegocio.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+
 public class Ventana extends JFrame {
 	Usuario u = new Usuario();
 	Controlador cont = new Controlador();
@@ -159,15 +161,6 @@ public class Ventana extends JFrame {
 		JLabel lblContrincante = new JLabel("Contrincante");
 		lblContrincante.setBounds(371, 179, 82, 14);
 		contentPane.add(lblContrincante);
-		
-		JButton btnBuscarCont = new JButton("Buscar Contrincante");
-		btnBuscarCont.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		btnBuscarCont.setBounds(351, 232, 144, 23);
-		contentPane.add(btnBuscarCont);
 	}
 	
 	
@@ -197,6 +190,10 @@ public class Ventana extends JFrame {
 		message = cont.deleteUsuario(dni);
 		JOptionPane.showMessageDialog(null, message);
 	}
+	
+	
+	
+	
 	public void buscarpartida(int dni1,int dni2){
 		cont.buscarpartida(dni1,dni2);
 	}

@@ -20,9 +20,13 @@ import entidades.Rey;
 import entidades.Torre;
 import entidades.Usuario;
 
+
+
 public class Catpiezas {
 	
+	
 	public void guardarpieza(ArrayList<Pieza> pie1, ArrayList<Pieza> pie2, int id1, int id2, int idpart){
+		
 		ArrayList<Pieza> pieza1 = new ArrayList<Pieza>();
 		ArrayList<Pieza> pieza2 = new ArrayList<Pieza>();
 		pieza1 = pie1;
@@ -87,6 +91,8 @@ public class Catpiezas {
 			}
 		}
 	}
+	
+	
 	
 	
 }

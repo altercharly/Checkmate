@@ -186,6 +186,9 @@ public class VentanaJugada extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	
+	
 	public void realizarmov(){
 		char pieza;
 		char posix;

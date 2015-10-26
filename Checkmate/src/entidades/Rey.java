@@ -10,8 +10,11 @@ public class Rey extends Pieza {
 		estado = est;
 	}
 	
+	
+	
 	public Boolean movPerm(int x, char y){
 		Boolean resultado;
+		
 		resultado = false;
 		for(int i=0; i < 8; i++){
 			switch(i){
@@ -67,4 +70,7 @@ public class Rey extends Pieza {
 		}
 	return resultado;
 	}
+	
+	
+	
 }

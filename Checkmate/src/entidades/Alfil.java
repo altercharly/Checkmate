@@ -10,11 +10,15 @@ public class Alfil extends Pieza {
 		estado = est;
 	}
 	
+	
+	
 	public Boolean movPerm(int x, char y){
+		
 		Boolean resultado;
-		resultado = false;
 		char xpos;
 		int ypos;
+		
+		resultado = false;
 		xpos= this.getposx();
 		ypos= this.getposy();
 		for(int i=0; i < 3; i++){
@@ -63,4 +67,6 @@ public class Alfil extends Pieza {
 		}
 	return resultado;
 	}
+	
+	
 }

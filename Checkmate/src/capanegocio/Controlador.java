@@ -7,13 +7,17 @@ import entidades.*;
 
 
 public class Controlador {
+	
 	Catusuario catu = new Catusuario();
 	Catalogopartidas cpa = new Catalogopartidas();
 	Catpiezas cp = new Catpiezas();
 	
+	
+	
 	public Usuario buscarusuario(int dni){
 		return catu.buscarusuario(dni);
 	}
+	
 	
 	
 	public String addUsuario(int dni, String nombre, String apellido){
@@ -27,14 +31,14 @@ public class Controlador {
 		}
 	
 	
+	
 	public String deleteUsuario(int dni){
 		return catu.deleteUsuario(dni);
 	}
 	
 	
 	
-	public ArrayList<Integer> buscarOponentes(int dni)
-	{
+	public ArrayList<Integer> buscarOponentes(int dni){
 		ArrayList<Integer> listaOponentes = cpa.buscarOponente(dni);
 		return(listaOponentes);
 	}
@@ -42,6 +46,7 @@ public class Controlador {
 	
 	
 	public String movimientovalido(char pieza, char posix, int posiy,char nposix, int nposiy, Usuario jug1, Usuario jug2,int idpart){
+		
 		String message = "Movimiento invalido";
 		boolean puede;
 		char nombre;
@@ -203,19 +208,27 @@ public class Controlador {
 	}
 	
 	
+	
 	public void nuevapartida(Usuario jug1,Usuario jug2){
 		Partida partn = new Partida();
 		partn.iniciarpartida(jug1, jug2);
 	}
 	
 	
+	
 	public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2, int idpart ){
 		Partida partn = new Partida();
 		partn.cargarpartida(piezas1, jug1, piezas2, jug2,idpart);
 	}
+	
+	
+	
 	public Partida buscarpartida(int dni1, int dni2){
 		Partida p = new Partida ();
 		p =	cpa.buscarpartida(dni1,dni2);
 		return p;
 	}
+	
+	
+	
 }

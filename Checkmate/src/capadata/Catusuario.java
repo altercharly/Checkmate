@@ -6,11 +6,17 @@ import java.sql.SQLException;
 
 import entidades.*;
 
+
+
 public class Catusuario {
+	
+	
 	public Usuario buscarusuario(int dni){
+		
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		Usuario u=null;
+		
 		try {
 			stmt = 	FactoryConexion.getInstancia().getConn().prepareStatement(
 					"select id, dni, nombre, apellido from personas where dni = ?"
@@ -42,7 +48,12 @@ public class Catusuario {
 		}
 		return u;
 	}
+	
+	
+	
+	
 	public Usuario addUsuario(int dni,String nombre, String apellido){
+		
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		Usuario u= new Usuario(dni,nombre,apellido);
@@ -80,6 +91,9 @@ public class Catusuario {
 		}
 		return u;
 	}
+	
+	
+	
 	public String deleteUsuario(int dni){
 		String message = "Persona no encontrada";
 		ResultSet rs=null;
@@ -109,5 +123,7 @@ public class Catusuario {
 	
 		return message;	
 	}
+	
+	
 	
 }

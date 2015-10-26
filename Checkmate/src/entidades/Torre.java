@@ -10,8 +10,11 @@ public class Torre extends Pieza {
 		estado = est;
 	}
 	
+	
+	
 	public Boolean movPerm(int x, char y){
 		Boolean resultado;
+		
 		resultado = false;
 		if( x == this.getposx()){
 			resultado = true;
@@ -21,4 +24,7 @@ public class Torre extends Pieza {
 		}
 		return resultado;
 	}
+	
+	
+	
 }

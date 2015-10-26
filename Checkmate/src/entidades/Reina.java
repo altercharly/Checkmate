@@ -10,11 +10,15 @@ public class Reina extends Pieza {
 		estado = est;
 	}
 	
+	
+	
 	public Boolean movPerm(int x, char y){
+		
 		Boolean resultado;
-		resultado = false;
 		char xpos;
 		int ypos;
+		
+		resultado = false;
 		xpos= this.getposx();
 		ypos= this.getposy();
 		for(int i=0; i < 5; i++){
@@ -74,6 +78,9 @@ public class Reina extends Pieza {
 			}
 		return resultado;	
 	}
+	
+	
+	
 }
 
 
