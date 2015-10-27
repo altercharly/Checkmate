@@ -223,9 +223,9 @@ public class Controlador {
 	
 	
 	
-	public Partida buscarpartida(int dni1, int dni2){
-		Partida p = new Partida ();
-		p =	cpa.buscarpartida(dni1,dni2);
+	public ArrayList<Partida> buscarpartida(int dni1){
+		ArrayList<Partida> p = new ArrayList<Partida> ();
+		p =	cpa.buscarpartida(dni1);
 		return p;
 	}
 	

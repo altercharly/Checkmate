@@ -64,9 +64,10 @@ public class Catalogopartidas {
 		return(oponentes);
 	}
 
-	public 	Partida buscarpartida(int dni1, int dni2){
-		Partida p = new Partida();
-		String sql="select * from partida  where `dnijug1`= ? and `dnijug2`= ?  ;";
+	public 	ArrayList<Partida> buscarpartida(int dni1){
+		ArrayList<Partida> p = new ArrayList<Partida>();
+		Partida part = new Partida();
+		String sql="select * from partida  where `dnijug1`= ?  ;";
 		PreparedStatement sentencia=null;
 		ResultSet rs=null;
 		Connection con = FactoryConexion.getInstancia().getConn();
@@ -74,11 +75,11 @@ public class Catalogopartidas {
 		{			
 			sentencia= con.prepareStatement(sql);
 			sentencia.setInt(1, dni1);
-			sentencia.setInt(2, dni2);
 			rs= sentencia.executeQuery();
-			p.setid(rs.getInt(1));
-			
-			
+			while (rs.next()){
+				part.setid(rs.getInt(1));
+				p.add(part);
+			}
 			
 		}
 		catch (SQLException e) 
@@ -106,4 +107,7 @@ public class Catalogopartidas {
 		}
 		return p;
 	}
+	
+	
+	
 }

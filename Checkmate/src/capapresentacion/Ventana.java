@@ -3,6 +3,7 @@ package capapresentacion;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import capanegocio.*;
 import entidades.*;
 
+import java.util.ArrayList;
 import java.awt.CardLayout;
 
 import javax.swing.JLabel;
@@ -25,6 +27,7 @@ import capanegocio.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 
 
@@ -123,14 +126,15 @@ public class Ventana extends JFrame {
 		btnBorrar.setBounds(351, 41, 144, 23);
 		contentPane.add(btnBorrar);
 		
-		JList list = new JList();
-		list.setBounds(10, 114, 297, 237);
-		contentPane.add(list);
+		JList listapart = new JList();
+		listapart.setBounds(10, 114, 297, 237);
+		contentPane.add(listapart);
 		
 		JButton btnbuscarpart = new JButton("Buscar Partida");
 		btnbuscarpart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				buscarpartida(dni1, dni2);
+				buscarpartida((Integer.parseInt(txtDni.getText())));
+				
 			}
 		});
 		btnbuscarpart.setBounds(352, 111, 143, 23);
@@ -139,13 +143,18 @@ public class Ventana extends JFrame {
 		JButton btnnuevapart = new JButton("Nueva Partida");
 		btnnuevapart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				nuevapartida();
+				nuevapartida((Integer.parseInt(txtDniCont.getText())));
 			}
 		});
 		btnnuevapart.setBounds(351, 145, 144, 23);
 		contentPane.add(btnnuevapart);
 		
 		JButton btnsalir = new JButton("Salir");
+		btnsalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salir();
+			}
+		});
 		btnsalir.setBounds(351, 316, 144, 23);
 		contentPane.add(btnsalir);
 		
@@ -161,6 +170,11 @@ public class Ventana extends JFrame {
 		JLabel lblContrincante = new JLabel("Contrincante");
 		lblContrincante.setBounds(371, 179, 82, 14);
 		contentPane.add(lblContrincante);
+		
+		JLabel lblLine = new JLabel("________________________________________________________________________________");
+		lblLine.setForeground(Color.GRAY);
+		lblLine.setBounds(10, 85, 485, 14);
+		contentPane.add(lblLine);
 	}
 	
 	
@@ -194,9 +208,30 @@ public class Ventana extends JFrame {
 	
 	
 	
-	public void buscarpartida(int dni1,int dni2){
-		cont.buscarpartida(dni1,dni2);
+	public DefaultListModel<Partida> buscarpartida(int dni1){
+		ArrayList<Partida> p = new ArrayList<Partida>();
+		p =cont.buscarpartida(dni1);
+		// modelos para mostrar en el jlist//
+		DefaultListModel<Partida> model = new DefaultListModel<>();
+		for (int i = 0; i < p.size() + 1; i++) {
+			model.addElement(p.get(i));
+		}
+		return model;	
 	}
-
+	
+	public void nuevapartida(int dni2){
+		Partida part = new Partida();
+		Usuario contrin = new Usuario();
+		contrin = cont.buscarusuario(dni2); 
+		// generar la ventana de partida
+		part.iniciarpartida(u,contrin);
+	}
+	
+	
+	
+	public void salir(){
+		System.exit(0);
+	}
+	
 	
 }
