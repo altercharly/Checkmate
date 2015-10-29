@@ -41,6 +41,7 @@ public class Ventana extends JFrame {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtDniCont;
+	private JList<Partida> listapart;
 
 	/**
 	 * Launch the application.
@@ -126,15 +127,15 @@ public class Ventana extends JFrame {
 		btnBorrar.setBounds(351, 41, 144, 23);
 		contentPane.add(btnBorrar);
 		
-		JList listapart = new JList();
+		listapart = new JList<Partida>();
 		listapart.setBounds(10, 114, 297, 237);
 		contentPane.add(listapart);
 		
 		JButton btnbuscarpart = new JButton("Buscar Partida");
 		btnbuscarpart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				buscarpartida((Integer.parseInt(txtDni.getText())));
 				
+				listapart.setModel(buscarpartida(Integer.parseInt(txtDni.getText())));;
 			}
 		});
 		btnbuscarpart.setBounds(352, 111, 143, 23);
