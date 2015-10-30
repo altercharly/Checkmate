@@ -10,13 +10,13 @@ public class Partida {
 	Usuario jugador2;
 	
 	
-	public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2,int idpart ){
-		jugador1 = jug1;
-		jugador1.setpiezas(piezas1);
-		jugador2 = jug2;
-		jugador2.setpiezas(piezas2);
-		id = idpart;
-	}
+	//public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2,int idpart ){
+		//jugador1 = jug1;
+		//jugador1.setpiezas(piezas1);
+		//jugador2 = jug2;
+		//jugador2.setpiezas(piezas2);
+		//id = idpart;
+	//}
 	
 	
 	
