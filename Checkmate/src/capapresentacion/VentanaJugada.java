@@ -40,26 +40,8 @@ public class VentanaJugada extends JFrame {
 	private JTextField txtnuevax;
 	private JTextField txtnuevay;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaJugada frame = new VentanaJugada();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public VentanaJugada() {
+	
+	public VentanaJugada(Partida partidaselect) {
 		setTitle("Jugada");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 577, 391);
@@ -189,6 +171,7 @@ public class VentanaJugada extends JFrame {
 	
 	
 	
+
 	public void realizarmov(){
 		char pieza;
 		char posix;

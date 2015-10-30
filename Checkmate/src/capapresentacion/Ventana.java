@@ -128,7 +128,7 @@ public class Ventana extends JFrame {
 		contentPane.add(btnBorrar);
 		
 		listapart = new JList<Partida>();
-		listapart.setBounds(10, 114, 297, 237);
+		listapart.setBounds(10, 114, 297, 192);
 		contentPane.add(listapart);
 		
 		JButton btnbuscarpart = new JButton("Buscar Partida");
@@ -176,6 +176,15 @@ public class Ventana extends JFrame {
 		lblLine.setForeground(Color.GRAY);
 		lblLine.setBounds(10, 85, 485, 14);
 		contentPane.add(lblLine);
+		
+		JButton btnjugar = new JButton("Jugar");
+		btnjugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				jugar();
+			}
+		});
+		btnjugar.setBounds(8, 317, 146, 22);
+		contentPane.add(btnjugar);
 	}
 	
 	
@@ -224,15 +233,25 @@ public class Ventana extends JFrame {
 		Partida part = new Partida();
 		Usuario contrin = new Usuario();
 		contrin = cont.buscarusuario(dni2); 
-		// generar la ventana de partida
+		// generar la ventana de partida//
 		part.iniciarpartida(u,contrin);
+		VentanaJugada jugada = new VentanaJugada(part);
+		jugada.setVisible(true);
 	}
 	
+	
+	
+	public void jugar(){
+		Partida partidaselect = new Partida();
+		partidaselect = listapart.getSelectedValue();
+		//genero la ventana partida//
+		VentanaJugada jugada = new VentanaJugada(partidaselect);
+		jugada.setVisible(true);
+		
+	}
 	
 	
 	public void salir(){
 		System.exit(0);
 	}
-	
-	
 }
