@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 
 import java.awt.event.ActionListener;
@@ -19,6 +20,8 @@ import java.awt.event.ActionEvent;
 
 import entidades.*;
 import capanegocio.Controlador;
+
+import java.awt.Color;
 
 public class VentanaJugada extends JFrame {
 
@@ -39,17 +42,40 @@ public class VentanaJugada extends JFrame {
 	private JLabel lblNuevaY;
 	private JTextField txtnuevax;
 	private JTextField txtnuevay;
+	private Partida partida = new Partida();
+	boolean permitido;
 
 	
 	public VentanaJugada(Partida partidaselect) {
+		int jugador;
+		partida = partidaselect;
 		setTitle("Jugada");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 577, 391);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		// busco jugador activo y valido permito o no sus movimientos//
+		jugador = partida.getjugact();
+		if (1 == jugador) {
+			txtjugactivo.setText((partida.getjugafor(1)).getApellido());
+			permitido = true;
+		}
+		else if (2 == jugador) {
+			txtjugactivo.setText((partida.getjugafor(2)).getApellido());
+			permitido = false;
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "A ocurrido un fallo terrible y todo el mundo se destruira en 5 minutos");
+		}
+		
 		
 		btnMostrarFichas = new JButton("Mostra posicion fichas");
+		btnMostrarFichas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mostrarfichas();
+			}
+		});
 		
 		lblSeleccionarFicha = new JLabel("Seleccionar ficha:");
 		
@@ -75,7 +101,7 @@ public class VentanaJugada extends JFrame {
 			}
 		});
 		
-		JTextPane textPane = new JTextPane();
+		JTextPane txtmuestra = new JTextPane();
 		
 		JLabel lblJugadorActivo = new JLabel("Jugador activo:");
 		
@@ -93,15 +119,28 @@ public class VentanaJugada extends JFrame {
 		txtnuevay.setColumns(10);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salir();
+			}
+		});
+		
+		JLabel lblLine1 = new JLabel("________________________________________________________________________________________");
+		lblLine1.setForeground(Color.GRAY);
+		
+		JLabel lblLine2 = new JLabel("________________________________________________________________________________________");
+		lblLine2.setForeground(Color.GRAY);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
+						.addComponent(lblLine2, GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+						.addComponent(lblLine1, GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnRealizarMov, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+								.addComponent(btnRealizarMov, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
 								.addComponent(lblSeleccionarFicha)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -112,13 +151,13 @@ public class VentanaJugada extends JFrame {
 										.addComponent(lblNuevaY))
 									.addGap(18)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtnuevay, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-										.addComponent(txtnuevax, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-										.addComponent(txtPosy, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-										.addComponent(txtPosx, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+										.addComponent(txtnuevay, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+										.addComponent(txtnuevax, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+										.addComponent(txtPosy, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+										.addComponent(txtPosx, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
 										.addComponent(textnombreficha, 0, 0, Short.MAX_VALUE))))
 							.addGap(56)
-							.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 344, GroupLayout.PREFERRED_SIZE))
+							.addComponent(txtmuestra, GroupLayout.PREFERRED_SIZE, 344, GroupLayout.PREFERRED_SIZE))
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 							.addComponent(btnMostrarFichas)
 							.addPreferredGap(ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
@@ -137,7 +176,9 @@ public class VentanaJugada extends JFrame {
 							.addComponent(txtjugactivo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblJugadorActivo))
 						.addComponent(btnMostrarFichas))
-					.addGap(33)
+					.addGap(13)
+					.addComponent(lblLine1)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblSeleccionarFicha)
@@ -162,10 +203,12 @@ public class VentanaJugada extends JFrame {
 								.addComponent(lblNuevaY)
 								.addComponent(txtnuevay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnRealizarMov)
-							.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-							.addComponent(btnSalir))
-						.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
+							.addComponent(btnRealizarMov))
+						.addComponent(txtmuestra, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
+					.addGap(10)
+					.addComponent(lblLine2)
+					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+					.addComponent(btnSalir)
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
@@ -176,15 +219,30 @@ public class VentanaJugada extends JFrame {
 
 	public void realizarmov(){
 		char pieza;
-		char posix;
+		char posix; 
 		char nposix;
 		int posiy;
 		int nposiy;
-		posiy = (Integer.parseInt(txtPosy.getText()));
-		nposiy = (Integer.parseInt(txtnuevay.getText()));
-		cont.movimientovalido(pieza, posix, posiy, nposix, nposiy, jug1, jug2, idpart);
-		
-		// falta seguir pasando datos a las variables
-		
+		if (true == permitido) {
+			posiy = (Integer.parseInt(txtPosy.getText()));
+			nposiy = (Integer.parseInt(txtnuevay.getText()));
+			//cont.movimientovalido(pieza, posix, posiy, nposix, nposiy, jug1, jug2, idpart);
+			// falta seguir pasando datos a las variables
+			
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "No tiene permitido hacer movimientos hasta que termine el turno del oponente");
+		}
+	}
+	
+	
+	
+	public void mostrarfichas(){
+		// recorro la colleccion de fichas de ambos usuarios y los asigno al txtmuestra
+	}
+	
+	
+	public void salir(){
+		System.exit(0);
 	}
 }

@@ -8,6 +8,8 @@ public class Partida {
 	int id;
 	Usuario jugador1;
 	Usuario jugador2;
+	boolean estado;
+	int jugact;  // 1 para jug 1 y 2 para jug 2
 	
 	
 	//public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2,int idpart ){
@@ -30,7 +32,7 @@ public class Partida {
 		int posiy;
 		int est;
 		
-		
+		jugact = 1;
 		nombre = 't';
 		colorin = 'b';
 		posix = 'a';
@@ -132,6 +134,37 @@ public class Partida {
 	
 	public void setid(int iD){
 		this.id = iD;
+	}
+	
+	
+	public void setestado(boolean est){
+		this.estado = est;
+	}
+	
+	
+	public boolean getestado(){
+		return this.estado;
+	}
+	
+	
+	public void setjugact(int activo){
+		this.jugact = activo;
+	}
+	
+	
+	public int getjugact(){
+		return this.jugact;
+	}
+	
+	
+	
+	public Usuario getjugafor(int jug){
+		if (1 == jug) {
+			return jugador1;
+		}
+		else{
+			return jugador2;
+		}
 	}
 	
 	

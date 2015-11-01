@@ -216,10 +216,10 @@ public class Controlador {
 	
 	
 	
-	public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2, int idpart ){
-		Partida partn = new Partida();
-		partn.cargarpartida(piezas1, jug1, piezas2, jug2,idpart);
-	}
+	//public void cargarpartida(ArrayList<Pieza> piezas1, Usuario jug1, ArrayList<Pieza> piezas2, Usuario jug2, int idpart ){
+		//Partida partn = new Partida();
+		//partn.cargarpartida(piezas1, jug1, piezas2, jug2,idpart);
+	//}
 	
 	
 	
