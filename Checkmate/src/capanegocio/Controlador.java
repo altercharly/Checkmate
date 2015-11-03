@@ -2,6 +2,8 @@ package capanegocio;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import capadata.*;
 import entidades.*;
 
@@ -45,10 +47,11 @@ public class Controlador {
 	
 	
 	
-	public String movimientovalido(char pieza, char posix, int posiy,char nposix, int nposiy, Usuario jug1, Usuario jug2,int idpart){
+	public boolean movimientovalido(char pieza, char posix, int posiy,char nposix, int nposiy, Usuario jug1, Usuario jug2,int idpart){
 		
 		String message = "Movimiento invalido";
 		boolean puede;
+		boolean puedepeon;
 		char nombre;
 		int posy;
 		char posx;
@@ -63,6 +66,7 @@ public class Controlador {
 		pieza2 = jug2.getpiezas();
 		id1 = jug1.getId();
 		id2 = jug2.getId();
+		puede = false;
 		for (int i = 0; i < 16; i++) {
 			nombre = pieza1.get(i).getname();
 			posx = pieza1.get(i).getposx();
@@ -87,8 +91,10 @@ public class Controlador {
 									pieza1.set(i,alf);
 									cp.guardarpieza(pieza1,pieza2, id1, id2,idpart);
 									message = "Movimiento exitoso";
+									JOptionPane.showMessageDialog(null, message);
+									puede = true;
 								}
-								return message ;
+								return puede ;
 							}
 							break;
 						case 1:
@@ -108,8 +114,10 @@ public class Controlador {
 									pieza1.set(i,cab);
 									cp.guardarpieza(pieza1,pieza2,id1, id2,idpart);
 									message = "Movimiento exitoso";
+									JOptionPane.showMessageDialog(null, message);
+									puede = true;
 								}
-								return message ;
+								return puede ;
 							}
 							break;
 						case 2:
@@ -129,8 +137,10 @@ public class Controlador {
 									pieza1.set(i,reina);
 									cp.guardarpieza(pieza1,pieza2,id1,id2,idpart);
 									message = "Movimiento exitoso";
+									JOptionPane.showMessageDialog(null, message);
+									puede = true;
 								}
-								return message ;
+								return puede ;
 							};
 							break;
 						case 3:
@@ -150,8 +160,10 @@ public class Controlador {
 									pieza1.set(i,rey);
 									cp.guardarpieza(pieza1,pieza2,id1,id2,idpart);
 									message = "Movimiento exitoso";
+									JOptionPane.showMessageDialog(null, message);
+									puede = true;
 								}
-								return message ;
+								return puede ;
 							};
 							break;
 						case 4:
@@ -171,8 +183,10 @@ public class Controlador {
 									pieza1.set(i,torr);
 									cp.guardarpieza(pieza1,pieza2,id1,id2,idpart);
 									message = "Movimiento exitoso";
+									JOptionPane.showMessageDialog(null, message);
+									puede = true;
 								}
-								return message ;
+								return puede ;
 							};
 							break;
 						case 5:
@@ -180,14 +194,16 @@ public class Controlador {
 								color = pieza1.get(i).getcolor();
 								estado = pieza1.get(i).getestado();
 								Peon peon = new Peon(nombre, color, posix, posiy, estado);
-								puede = peon.movPerm(nposiy, nposix);
-								if (true == puede){
+								puedepeon = peon.movPerm(nposiy, nposix);
+								if (true == puedepeon){
 									for (int k = 0; k < 16; k++) {
 										if(( nposix == pieza2.get(k).getposx())&&(nposiy == pieza2.get(k).getposy())&&(1 == pieza2.get(k).getestado())){
 											pieza2.get(k).setestado(0);
 										}
 										else if(nposix != posix){
 											message ="Movimiento invalido";
+											JOptionPane.showMessageDialog(null, message);
+											puede = false;
 											break;
 										}
 									}
@@ -196,15 +212,17 @@ public class Controlador {
 									pieza1.set(i,peon);
 									cp.guardarpieza(pieza1,pieza2,id1,id2,idpart);
 									message = "Movimiento exitoso";
+									JOptionPane.showMessageDialog(null, message);
+									puede = true;
 								}
-								return message ;
+								return puede ;
 							};
 							break;					
 						}
 				}
 			}
 		}
-		return message;
+		return puede;
 	}
 	
 	
@@ -231,4 +249,15 @@ public class Controlador {
 	
 	
 	
+	public String mostrarfichas(Partida partida){
+		String texto = new String();
+		Partida part = new Partida();
+		part = partida;
+		// completar recorriendo la partida
+		
+		return texto;
+	}
+	
+	
+
 }

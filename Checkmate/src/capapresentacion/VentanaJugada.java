@@ -36,6 +36,7 @@ public class VentanaJugada extends JFrame {
 	private JTextField txtPosy;
 	private JButton btnRealizarMov;
 	private JTextField txtjugactivo;
+	JTextPane txtmuestra = new JTextPane();
 	
 	Controlador cont = new Controlador();
 	private JLabel lblNuevaX;
@@ -58,11 +59,11 @@ public class VentanaJugada extends JFrame {
 		// busco jugador activo y valido permito o no sus movimientos//
 		jugador = partida.getjugact();
 		if (1 == jugador) {
-			txtjugactivo.setText((partida.getjugafor(1)).getApellido());
+			txtjugactivo.setText((partida.getjugador(1)).getApellido());
 			permitido = true;
 		}
 		else if (2 == jugador) {
-			txtjugactivo.setText((partida.getjugafor(2)).getApellido());
+			txtjugactivo.setText((partida.getjugador(2)).getApellido());
 			permitido = false;
 		}
 		else{
@@ -101,7 +102,7 @@ public class VentanaJugada extends JFrame {
 			}
 		});
 		
-		JTextPane txtmuestra = new JTextPane();
+		
 		
 		JLabel lblJugadorActivo = new JLabel("Jugador activo:");
 		
@@ -218,27 +219,43 @@ public class VentanaJugada extends JFrame {
 	
 
 	public void realizarmov(){
+		
 		char pieza;
 		char posix; 
 		char nposix;
 		int posiy;
 		int nposiy;
+		int idpart;
+		Usuario jug1;
+		Usuario jug2;
+		boolean pudo;
+		
 		if (true == permitido) {
+			pieza = (char)(textnombreficha.getText()).charAt(0);
 			posiy = (Integer.parseInt(txtPosy.getText()));
 			nposiy = (Integer.parseInt(txtnuevay.getText()));
-			//cont.movimientovalido(pieza, posix, posiy, nposix, nposiy, jug1, jug2, idpart);
-			// falta seguir pasando datos a las variables
-			
+			posix = (char)(txtPosx.getText()).charAt(0);
+			nposix = (char)(txtnuevax.getText()).charAt(0);
+			idpart = partida.getid();
+			jug1 = partida.getjugador(1);
+			jug2 = partida.getjugador(2);
+			pudo = cont.movimientovalido(pieza, posix, posiy, nposix, nposiy, jug1, jug2, idpart);
+			if (true == pudo) {
+				txtjugactivo.setText((partida.getjugador(2)).getApellido());
+				permitido = false;
+			}
+						
 		}
 		else{
 			JOptionPane.showMessageDialog(null, "No tiene permitido hacer movimientos hasta que termine el turno del oponente");
 		}
+		
 	}
 	
 	
 	
 	public void mostrarfichas(){
-		// recorro la colleccion de fichas de ambos usuarios y los asigno al txtmuestra
+		txtmuestra.setText(cont.mostrarfichas(partida));
 	}
 	
 	

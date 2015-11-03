@@ -158,7 +158,7 @@ public class Partida {
 	
 	
 	
-	public Usuario getjugafor(int jug){
+	public Usuario getjugador(int jug){
 		if (1 == jug) {
 			return jugador1;
 		}
