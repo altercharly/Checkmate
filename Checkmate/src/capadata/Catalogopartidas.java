@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-
 import java.util.ArrayList;
 
 import entidades.Pieza;
@@ -109,5 +107,52 @@ public class Catalogopartidas {
 	}
 	
 	
+	public Partida guardarPartida (Partida partida)
+	{
+		ResultSet rs=null;
+		PreparedStatement stmt=null;
+				
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+					"insert into partidas(estado,turno,dni1,dni2,) values (?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS
+				   );
+			stmt.setBoolean(1, partida.getestado());
+			stmt.setInt(2, partida.getjugact());
+			stmt.setInt(3, partida.getjugador(1).getdni());
+			stmt.setInt(4, partida.getjugador(2).getdni());
+			stmt.execute();
+
+			rs=stmt.getGeneratedKeys();
+			
+			if(rs!=null && rs.next()){
+				partida.setid(rs.getInt(1));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			
+			try {
+				if(rs!=null ) rs.close();
+				if(stmt != null) stmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			FactoryConexion.getInstancia().releaseConn();
+		}
+		return partida;
+	}
+	
+
+	
+
+public void actualizarpartida(Partida partida)
+{
 	
 }
+}
+
