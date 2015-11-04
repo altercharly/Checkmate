@@ -69,7 +69,7 @@ public class Catalogopartidas {
 				
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
-					"insert into partidas(estado,turno,dni1,dni2,) values (?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS
+					"insert into partidas(estado,turno,dni1,dni2,) values (?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS
 				   );
 			stmt.setBoolean(1, partida.getestado());
 			stmt.setInt(2, partida.getjugact());
@@ -105,9 +105,37 @@ public class Catalogopartidas {
 
 	
 
-public void actualizarpartida(Partida partida)
+public void actualizarPartida(Partida partida)
 {
-	
+	ResultSet rs=null;
+	PreparedStatement stmt=null;
+			
+	try {
+		stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+				"update partidas set estado = ? where idpartida = ?");
+		stmt.setBoolean(1, partida.getestado());
+		stmt.setInt(2, partida.getid());
+		
+		stmt.executeUpdate();
+
+				
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	finally{
+		
+		try {
+			if(rs!=null ) rs.close();
+			if(stmt != null) stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		FactoryConexion.getInstancia().releaseConn();
+	}
+
 }
 }
 

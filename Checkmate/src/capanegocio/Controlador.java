@@ -266,7 +266,7 @@ public class Controlador {
 	public void guardarpartida(Partida partida) {
 		Partida part = new Partida();
 		part = partida;
-		cpa.guardarpartida(part);
+		cpa.guardarPartida(part);
 		
 	}
 
@@ -275,7 +275,7 @@ public class Controlador {
 	public void actualizarpartida(Partida partida) {
 		Partida part = new Partida();
 		part = partida;
-		cpa.actualizarpartida(part);
+		cpa.actualizarPartida(part);
 		
 	}
 
