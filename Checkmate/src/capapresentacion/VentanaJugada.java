@@ -229,6 +229,7 @@ public class VentanaJugada extends JFrame {
 		Usuario jug1;
 		Usuario jug2;
 		boolean pudo;
+		boolean gano;
 		
 		if (true == permitido) {
 			pieza = (char)(textnombreficha.getText()).charAt(0);
@@ -242,7 +243,12 @@ public class VentanaJugada extends JFrame {
 			pudo = cont.movimientovalido(pieza, posix, posiy, nposix, nposiy, jug1, jug2, idpart);
 			if (true == pudo) {
 				txtjugactivo.setText((partida.getjugador(2)).getApellido());
+				gano =cont.gano(partida.getjugador(2));
 				permitido = false;
+				if (gano == true) {
+					partida.setestado(false);
+				}
+			cont.guardarpartida(partida);	
 			}
 						
 		}

@@ -253,11 +253,33 @@ public class Controlador {
 		String texto = new String();
 		Partida part = new Partida();
 		part = partida;
-		// completar recorriendo la partida
-		
+		// completar recorriendo la partida y ver como se completa el string o usar modelos en ver de cuadro de texto
+		texto = (part.getjugador(1)).getNombre() + (part.getjugador(1)).getApellido();
 		return texto;
 	}
 	
-	
+	public boolean gano(Usuario jug2){
+		Usuario jug = new Usuario();
+		ArrayList<Pieza> piezas = new ArrayList<Pieza>();
+		int esta;
+		boolean gana;
+		jug = jug2;
+		gana = false;
+		piezas = jug.getpiezas();
+		for (Pieza p : piezas){
+			if ((p.getestado() == 0) && (p.getname()== 'r')) {
+				JOptionPane.showMessageDialog(null, "GANASTE");
+				gana = true;
+			}
+		}
+		return gana;
+	}
+
+
+
+	public void guardarpartida(Partida partida) {
+		// metodo para guardar la partida
+		
+	}
 
 }

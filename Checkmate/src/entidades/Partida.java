@@ -8,7 +8,7 @@ public class Partida {
 	int id;
 	Usuario jugador1;
 	Usuario jugador2;
-	boolean estado;
+	boolean estado;  // true activa y false terminada
 	int jugact;  // 1 para jug 1 y 2 para jug 2
 	
 	
