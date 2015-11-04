@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -22,6 +25,8 @@ import entidades.*;
 import capanegocio.Controlador;
 
 import java.awt.Color;
+
+import java.util.ArrayList;
 
 public class VentanaJugada extends JFrame {
 
@@ -247,8 +252,8 @@ public class VentanaJugada extends JFrame {
 				permitido = false;
 				if (gano == true) {
 					partida.setestado(false);
+					cont.actualizarpartida(partida);
 				}
-			cont.guardarpartida(partida);	
 			}
 						
 		}
@@ -261,7 +266,30 @@ public class VentanaJugada extends JFrame {
 	
 	
 	public void mostrarfichas(){
-		txtmuestra.setText(cont.mostrarfichas(partida));
+		Usuario jug1 = new Usuario();
+		jug1 = partida.getjugador(1);
+		ArrayList<Pieza> piezas = jug1.getpiezas(); 
+		
+		
+		// usar append para llenar 
+		StyledDocument doc = txtmuestra.getStyledDocument();
+
+		//  Define a keyword attribute
+
+		SimpleAttributeSet keyWord = new SimpleAttributeSet();
+		StyleConstants.setForeground(keyWord, Color.BLACK);
+		StyleConstants.setBackground(keyWord, Color.WHITE);
+		StyleConstants.setBold(keyWord, true);
+
+		//  Add some text
+	
+	    doc.insertString(0, (partida.getjugador(1).getNombre())+((partida.getjugador(1)).getApellido()) + "\n", null );
+	    doc.insertString(0,  "Posicion de las fichas: \n", null );
+	    for (int i = 0; i < array.length; i++) {
+			
+		}
+	    doc.insertString(0, ""\n", null );
+	    doc.insertString(doc.getLength(), "\nEnd of text", keyWord );
 	}
 	
 	

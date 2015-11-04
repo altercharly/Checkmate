@@ -237,6 +237,7 @@ public class Ventana extends JFrame {
 		part.iniciarpartida(u,contrin);
 		VentanaJugada jugada = new VentanaJugada(part);
 		jugada.setVisible(true);
+		cont.guardarpartida(part);
 	}
 	
 	

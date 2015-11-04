@@ -40,12 +40,6 @@ public class Controlador {
 	
 	
 	
-	public ArrayList<Integer> buscarOponentes(int dni){
-		ArrayList<Integer> listaOponentes = cpa.buscarOponente(dni);
-		return(listaOponentes);
-	}
-	
-	
 	
 	public boolean movimientovalido(char pieza, char posix, int posiy,char nposix, int nposiy, Usuario jug1, Usuario jug2,int idpart){
 		
@@ -249,14 +243,6 @@ public class Controlador {
 	
 	
 	
-	public String mostrarfichas(Partida partida){
-		String texto = new String();
-		Partida part = new Partida();
-		part = partida;
-		// completar recorriendo la partida y ver como se completa el string o usar modelos en ver de cuadro de texto
-		texto = (part.getjugador(1)).getNombre() + (part.getjugador(1)).getApellido();
-		return texto;
-	}
 	
 	public boolean gano(Usuario jug2){
 		Usuario jug = new Usuario();
@@ -278,7 +264,18 @@ public class Controlador {
 
 
 	public void guardarpartida(Partida partida) {
-		// metodo para guardar la partida
+		Partida part = new Partida();
+		part = partida;
+		cpa.guardarpartida(part);
+		
+	}
+
+
+
+	public void actualizarpartida(Partida partida) {
+		Partida part = new Partida();
+		part = partida;
+		cpa.actualizarpartida(part);
 		
 	}
 
