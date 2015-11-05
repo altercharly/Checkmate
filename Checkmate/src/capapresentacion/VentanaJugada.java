@@ -27,6 +27,7 @@ import capanegocio.Controlador;
 import java.awt.Color;
 
 import java.util.ArrayList;
+import javax.swing.JTextArea;
 
 public class VentanaJugada extends JFrame {
 
@@ -41,7 +42,6 @@ public class VentanaJugada extends JFrame {
 	private JTextField txtPosy;
 	private JButton btnRealizarMov;
 	private JTextField txtjugactivo;
-	JTextPane txtmuestra = new JTextPane();
 	
 	Controlador cont = new Controlador();
 	private JLabel lblNuevaX;
@@ -49,6 +49,7 @@ public class VentanaJugada extends JFrame {
 	private JTextField txtnuevax;
 	private JTextField txtnuevay;
 	private Partida partida = new Partida();
+	private JTextArea textMuestra = new JTextArea();
 	boolean permitido;
 
 	
@@ -136,15 +137,17 @@ public class VentanaJugada extends JFrame {
 		
 		JLabel lblLine2 = new JLabel("________________________________________________________________________________________");
 		lblLine2.setForeground(Color.GRAY);
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblLine2, GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
 						.addComponent(lblLine1, GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnRealizarMov, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
 								.addComponent(lblSeleccionarFicha)
@@ -162,15 +165,15 @@ public class VentanaJugada extends JFrame {
 										.addComponent(txtPosy, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
 										.addComponent(txtPosx, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
 										.addComponent(textnombreficha, 0, 0, Short.MAX_VALUE))))
-							.addGap(56)
-							.addComponent(txtmuestra, GroupLayout.PREFERRED_SIZE, 344, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGap(44)
+							.addComponent(textMuestra, GroupLayout.PREFERRED_SIZE, 356, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnMostrarFichas)
 							.addPreferredGap(ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
 							.addComponent(lblJugadorActivo)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtjugactivo, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnSalir, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -210,10 +213,10 @@ public class VentanaJugada extends JFrame {
 								.addComponent(txtnuevay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnRealizarMov))
-						.addComponent(txtmuestra, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
-					.addGap(10)
+						.addComponent(textMuestra, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblLine2)
-					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
 					.addComponent(btnSalir)
 					.addContainerGap())
 		);
@@ -267,29 +270,29 @@ public class VentanaJugada extends JFrame {
 	
 	public void mostrarfichas(){
 		Usuario jug1 = new Usuario();
+		Usuario jug2 = new Usuario();
+		String texto = new String();
+		// muestro datos y fichas activas del j1
 		jug1 = partida.getjugador(1);
-		ArrayList<Pieza> piezas = jug1.getpiezas(); 
-		
-		
-		// usar append para llenar 
-		StyledDocument doc = txtmuestra.getStyledDocument();
-
-		//  Define a keyword attribute
-
-		SimpleAttributeSet keyWord = new SimpleAttributeSet();
-		StyleConstants.setForeground(keyWord, Color.BLACK);
-		StyleConstants.setBackground(keyWord, Color.WHITE);
-		StyleConstants.setBold(keyWord, true);
-
-		//  Add some text
-	
-	    doc.insertString(0, (partida.getjugador(1).getNombre())+((partida.getjugador(1)).getApellido()) + "\n", null );
-	    doc.insertString(0,  "Posicion de las fichas: \n", null );
-	    for (int i = 0; i < array.length; i++) {
-			
+		ArrayList<Pieza> piezas = jug1.getpiezas();
+		texto = jug1.getApellido() + jug1.getNombre() + "\n";
+		for (int i = 0; i < piezas.size(); i++) {
+			if ((piezas.get(i)).getestado() == 1) {
+				texto = texto + (piezas.get(i)).getname() + " (" + (piezas.get(i)).getposx() + "," +(piezas.get(i)).getposy() + "); " ;  
+			}
+		texto = texto + " \n \n" ;	
 		}
-	    doc.insertString(0, ""\n", null );
-	    doc.insertString(doc.getLength(), "\nEnd of text", keyWord );
+		// muestro datos y fichas activad del j2
+		jug2 = partida.getjugador(2);
+		ArrayList<Pieza> piezas2 = jug2.getpiezas();
+		texto = jug2.getApellido() + jug2.getNombre() + "\n";
+		for (int i = 0; i < piezas2.size(); i++) {
+			if ((piezas2.get(i)).getestado() == 1) {
+				texto = texto + (piezas2.get(i)).getname() + " (" + (piezas2.get(i)).getposx() + "," +(piezas2.get(i)).getposy() + "); " ;  
+			}
+		texto = texto + " \n" ;	
+		}
+	
 	}
 	
 	
