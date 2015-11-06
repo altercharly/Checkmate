@@ -240,7 +240,7 @@ public class VentanaJugada extends JFrame {
 		boolean gano;
 		
 		if (true == permitido) {
-			pieza = (char)(textnombreficha.getText()).charAt(0);
+			pieza = (char)((textnombreficha.getText()).toLowerCase()).charAt(0);
 			posiy = (Integer.parseInt(txtPosy.getText()));
 			nposiy = (Integer.parseInt(txtnuevay.getText()));
 			posix = (char)(txtPosx.getText()).charAt(0);
