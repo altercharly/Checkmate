@@ -52,15 +52,15 @@ public class VentanaJugada extends JFrame {
 	private JTextArea textMuestra = new JTextArea();
 	boolean permitido;
 	
-	public void run() {
-		Partida part = new Partida();
-		try {
-			VentanaJugada frame = new VentanaJugada(part);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	//public void run() {
+	//Partida part = new Partida();
+	//try {
+	//VentanaJugada frame = new VentanaJugada(part);
+	//frame.setVisible(true);
+	//} catch (Exception e) {
+	//e.printStackTrace();
+	//}
+	//}
 
 	
 	public VentanaJugada(Partida partidaselect) {
