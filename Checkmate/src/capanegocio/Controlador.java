@@ -21,7 +21,7 @@ public class Controlador {
 	}
 	
 	
-	
+	//valida si el usuario existe, sino lo agrega
 	public String addUsuario(int dni, String nombre, String apellido){
 		Usuario u = new Usuario();
 		String message = "ERROR";

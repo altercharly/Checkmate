@@ -69,7 +69,7 @@ public class Catalogopartidas {
 				
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
-					"insert into partidas(estado,turno,dni1,dni2,) values (?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS
+					"insert into partidas(estado,turno,dni1,dni2) values (?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS
 				   );
 			stmt.setBoolean(1, partida.getestado());
 			stmt.setInt(2, partida.getjugact());

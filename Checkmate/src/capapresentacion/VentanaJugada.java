@@ -73,11 +73,11 @@ public class VentanaJugada extends JFrame {
 			permitido = false;
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "A ocurrido un fallo terrible y todo el mundo se destruira en 5 minutos");
+			JOptionPane.showMessageDialog(null, "HA ocurrido un fallo terrible y todo el mundo se destruira en 5 minutos");
 		}
 		
 		
-		btnMostrarFichas = new JButton("Mostra posicion fichas");
+		btnMostrarFichas = new JButton("Muestra posicion fichas");
 		btnMostrarFichas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mostrarfichas();

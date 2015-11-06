@@ -10,7 +10,7 @@ public class FactoryConexion {
 	private String port="3306";
 	private String user="usuariojava";
 	private String pass="jime";
-	private String db="java";
+	private String db="checkmate";
 	
 	private Connection conn;
 	private int cantCon;

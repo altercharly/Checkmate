@@ -46,7 +46,7 @@ public class Ventana extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args ) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -101,9 +101,17 @@ public class Ventana extends JFrame {
 		JButton btnBuscar = new JButton("Buscar Usuario");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				buscarusuario((Integer.parseInt(txtDni.getText())));
-				txtNombre.setText(u.getNombre());
+				u=buscarusuario((Integer.parseInt(txtDni.getText())));
+				
+				if (u==null)
+				{
+					JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+				}
+				else 
+				{
+					txtNombre.setText(u.getNombre());
 				txtApellido.setText(u.getApellido());
+				}
 			}
 		});
 		btnBuscar.setBounds(164, 11, 143, 23);
@@ -112,6 +120,7 @@ public class Ventana extends JFrame {
 		JButton btnAgregar = new JButton("Nuevo Usuario");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				crearusuario((Integer.parseInt(txtDni.getText())),txtNombre.getText(),txtApellido.getText());
 			}
 		});
@@ -198,13 +207,14 @@ public class Ventana extends JFrame {
 	
 	
 	
-	public Usuario crearusuario(int dni, String nombre, String apellido){
+	public void crearusuario(int dni, String nombre, String apellido){
 		u.setdni(dni);
 		u.setNombre(nombre);
 		u.setApellido(apellido);
 		message = cont.addUsuario(dni, nombre, apellido);
 		JOptionPane.showMessageDialog(null, message);
-		return u;
+		limpiarCampos();
+		
 	}
 	
 	
@@ -212,6 +222,7 @@ public class Ventana extends JFrame {
 	
 	public void borrarusuario(int dni){
 		message = cont.deleteUsuario(dni);
+		limpiarCampos();
 		JOptionPane.showMessageDialog(null, message);
 	}
 	
@@ -251,6 +262,11 @@ public class Ventana extends JFrame {
 		
 	}
 	
+	public void limpiarCampos()
+	{
+		txtNombre.setText("");
+		txtApellido.setText("");
+	}
 	
 	public void salir(){
 		System.exit(0);

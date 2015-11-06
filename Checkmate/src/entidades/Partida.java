@@ -162,9 +162,12 @@ public class Partida {
 		if (1 == jug) {
 			return jugador1;
 		}
-		else{
+		else if (2 == jug){
 			return jugador2;
 		}
+		else 
+			return null;
+		
 	}
 	
 	

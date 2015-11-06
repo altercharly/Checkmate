@@ -19,7 +19,7 @@ public class Catusuario {
 		
 		try {
 			stmt = 	FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select id, dni, nombre, apellido from personas where dni = ?"
+					"select id, dni, nombre, apellido from usuario where dni = ?"
 					);
 			stmt.setInt(1, dni);
 			rs = stmt.executeQuery();
@@ -60,7 +60,7 @@ public class Catusuario {
 		
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
-					"insert into personas(dni, nombre, apellido) values (?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS
+					"insert into usuario(dni, nombre, apellido) values (?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS
 				   );
 			stmt.setInt(1, dni);
 			stmt.setString(2, nombre);
@@ -95,17 +95,17 @@ public class Catusuario {
 	
 	
 	public String deleteUsuario(int dni){
-		String message = "Persona no encontrada";
+		String message = "Usuario no encontrado";
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		Usuario u=null;
 		try {
 			stmt = 	FactoryConexion.getInstancia().getConn().prepareStatement(
-					"DELETE from personas where dni = ?"
+					"DELETE from usuario where dni = ?"
 					);
 			stmt.setInt(1, dni);
 			stmt.execute();
-			message="Persona borrada con exito";
+			message="Usuario borrado con exito";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
