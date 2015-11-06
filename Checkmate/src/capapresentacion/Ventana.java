@@ -277,4 +277,6 @@ public class Ventana extends JFrame {
 	public void salir(){
 		System.exit(0);
 	}
+	
+	
 }
