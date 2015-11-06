@@ -232,12 +232,18 @@ public class Ventana extends JFrame {
 	public DefaultListModel<Partida> buscarpartida(int dni1){
 		ArrayList<Partida> p = new ArrayList<Partida>();
 		p =cont.buscarpartida(dni1);
-		// modelos para mostrar en el jlist//
+		if (p!=null)
+		
+		{// modelos para mostrar en el jlist//
 		DefaultListModel<Partida> model = new DefaultListModel<>();
 		for (int i = 0; i < p.size() + 1; i++) {
 			model.addElement(p.get(i));
 		}
-		return model;	
+		return model;
+		}
+		else {JOptionPane.showMessageDialog(null, "No hay partidas cargadas");
+			return null;
+		}
 	}
 	
 	public void nuevapartida(int dni2){

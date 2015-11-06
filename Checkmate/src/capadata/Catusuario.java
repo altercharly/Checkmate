@@ -19,13 +19,13 @@ public class Catusuario {
 		
 		try {
 			stmt = 	FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select id, dni, nombre, apellido from usuario where dni = ?"
+					"select idUsuario, dni, nombre, apellido from usuario where dni = ?"
 					);
 			stmt.setInt(1, dni);
 			rs = stmt.executeQuery();
 			if(rs !=null && rs.next()){
 				u =new Usuario();
-				u.setId(rs.getInt("id"));
+				u.setId(rs.getInt("idUsuario"));
 				u.setdni(rs.getInt("dni"));
 				u.setNombre(rs.getString("nombre"));
 				u.setApellido(rs.getString("apellido"));
@@ -60,8 +60,7 @@ public class Catusuario {
 		
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
-					"insert into usuario(dni, nombre, apellido) values (?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS
-				   );
+					"insert into usuario (dni, nombre, apellido) values (?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, dni);
 			stmt.setString(2, nombre);
 			stmt.setString(3, apellido);

@@ -19,8 +19,9 @@ public class Catalogopartidas {
 
 	public 	ArrayList<Partida> buscarpartida(int dni1){
 		ArrayList<Partida> p = new ArrayList<Partida>();
+		p=null;
 		Partida part = new Partida();
-		String sql="select * from partida  where `dnijug1`= ?  ;";
+		String sql="select * from partida  where turno= ?";
 		PreparedStatement sentencia=null;
 		ResultSet rs=null;
 		Connection con = FactoryConexion.getInstancia().getConn();
@@ -29,11 +30,12 @@ public class Catalogopartidas {
 			sentencia= con.prepareStatement(sql);
 			sentencia.setInt(1, dni1);
 			rs= sentencia.executeQuery();
-			while (rs.next()){
+			while (rs !=null && rs.next()){
 				part.setid(rs.getInt(1));
 				p.add(part);
 			}
 			
+				
 		}
 		catch (SQLException e) 
 		{

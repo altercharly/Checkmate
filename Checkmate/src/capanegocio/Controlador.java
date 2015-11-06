@@ -238,7 +238,10 @@ public class Controlador {
 	public ArrayList<Partida> buscarpartida(int dni1){
 		ArrayList<Partida> p = new ArrayList<Partida> ();
 		p =	cpa.buscarpartida(dni1);
+		
 		return p;
+		
+		
 	}
 	
 	
