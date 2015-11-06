@@ -72,7 +72,7 @@ public class Ventana extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblDni = new JLabel("Dni :");
-		lblDni.setBounds(10, 11, 22, 23);
+		lblDni.setBounds(10, 11, 44, 23);
 		contentPane.add(lblDni);
 		
 		txtDni = new JTextField();
@@ -255,6 +255,7 @@ public class Ventana extends JFrame {
 		VentanaJugada jugada = new VentanaJugada(part);
 		jugada.setVisible(true);
 		cont.guardarpartida(part);
+		
 	}
 	
 	

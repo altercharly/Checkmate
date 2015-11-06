@@ -224,6 +224,7 @@ public class Controlador {
 	public void nuevapartida(Usuario jug1,Usuario jug2){
 		Partida partn = new Partida();
 		partn.iniciarpartida(jug1, jug2);
+		
 	}
 	
 	
@@ -268,8 +269,18 @@ public class Controlador {
 
 	public void guardarpartida(Partida partida) {
 		Partida part = new Partida();
+		int idpart;
+		int id1,id2;
+		ArrayList<Pieza> pie1,pie2 = new ArrayList<Pieza>();
+		Usuario jugador2;
 		part = partida;
-		cpa.guardarPartida(part);
+		part = cpa.guardarPartida(part);
+		idpart = part.getid();
+		id1 = (part.getjugador(1)).getId();
+		id2 = (part.getjugador(2)).getId();
+		pie1 = (part.getjugador(1)).getpiezas();
+		pie2 = (part.getjugador(2)).getpiezas();
+		cp.guardarpieza(pie1, pie2, id1, id2, idpart);
 		
 	}
 
