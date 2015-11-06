@@ -25,8 +25,8 @@ import entidades.*;
 import capanegocio.Controlador;
 
 import java.awt.Color;
-
 import java.util.ArrayList;
+
 import javax.swing.JTextArea;
 
 public class VentanaJugada extends JFrame {
@@ -51,6 +51,16 @@ public class VentanaJugada extends JFrame {
 	private Partida partida = new Partida();
 	private JTextArea textMuestra = new JTextArea();
 	boolean permitido;
+	
+	public void run() {
+		Partida part = new Partida();
+		try {
+			VentanaJugada frame = new VentanaJugada(part);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	
 	public VentanaJugada(Partida partidaselect) {
