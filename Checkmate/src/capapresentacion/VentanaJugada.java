@@ -72,19 +72,7 @@ public class VentanaJugada extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		// busco jugador activo y valido permito o no sus movimientos//
-		jugador = partida.getjugact();
-		if (1 == jugador) {
-			txtjugactivo.setText((partida.getjugador(1)).getApellido());
-			permitido = true;
-		}
-		else if (2 == jugador) {
-			txtjugactivo.setText((partida.getjugador(2)).getApellido());
-			permitido = false;
-		}
-		else{
-			JOptionPane.showMessageDialog(null, "HA ocurrido un fallo terrible y todo el mundo se destruira en 5 minutos");
-		}
+		
 		
 		
 		btnMostrarFichas = new JButton("Muestra posicion fichas");
@@ -231,6 +219,20 @@ public class VentanaJugada extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		// busco jugador activo y valido permito o no sus movimientos//
+				jugador = partida.getjugact();
+				if (1 == jugador) {
+					txtjugactivo.setText((partida.getjugador(1)).getApellido());
+					permitido = true;
+				}
+				else if (2 == jugador) {
+					txtjugactivo.setText((partida.getjugador(2)).getApellido());
+					permitido = false;
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "HA ocurrido un fallo terrible y todo el mundo se destruira en 5 minutos");
+				}
 	}
 	
 	
