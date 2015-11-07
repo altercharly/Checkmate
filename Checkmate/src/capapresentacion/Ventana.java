@@ -1,5 +1,6 @@
 package capapresentacion;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -31,6 +32,7 @@ import java.awt.Color;
 
 
 
+
 public class Ventana extends JFrame {
 	Usuario u = new Usuario();
 	Controlador cont = new Controlador();
@@ -48,7 +50,8 @@ public class Ventana extends JFrame {
 	 */
 	public static void main(String[] args ) {
 		EventQueue.invokeLater(new Runnable() {
-			 {
+			 
+			public void run() {
 				try {
 					Ventana frame = new Ventana();
 					frame.setVisible(true);
@@ -56,6 +59,7 @@ public class Ventana extends JFrame {
 					e.printStackTrace();
 				}
 			}
+		//
 		});
 	}
 
